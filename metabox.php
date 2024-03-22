@@ -7,13 +7,24 @@ Author: Nihal
 License: GPL2
 */
 
+// styles hooked
+function enqueue_metabox_styles() {
+    // Get the URL of the plugin directory
+    $dir_url = plugins_url('style.css', __FILE__);
+
+    // Enqueue your custom stylesheet
+    wp_enqueue_style('style', $dir_url);
+}
+// Ensure this line is present to call the function
+add_action('wp_enqueue_scripts', 'enqueue_metabox_styles');
+
 function metabox_basic_add() {
     add_meta_box(
         'metabox_id',
-        'Metabox Basic',
+        'Metabox basic plugin',
         'basic_metabox_render',
         'post',
-        'normal',
+        'side',
         'high'
     );
 }
@@ -66,7 +77,7 @@ function display_metabox_data($content) {
     if ($checkbox_data) {
         $input_data = get_post_meta($post->ID, 'input_value', true);
         // Display input field data if checkbox is checked
-        $content .= '<div class="custom-input-field">' . esc_html($input_data) . '</div>';
+        $content .= '<div class="custom-input-field"><p class="meta-data-value">' . esc_html($input_data) . '</p></div>';
     }
 
     return $content;
