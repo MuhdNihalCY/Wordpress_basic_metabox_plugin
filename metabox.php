@@ -55,7 +55,7 @@ function save_metabox_data($post_id) {
     }
 
     // Save input field data with proper sanitization
-    $input_value = isset ($_POST['input_value']) ? sanitize_text_field($_POST['input_value']) : '';
+    $input_value = isset($_POST['input_value']) ? sanitize_text_field(trim($_POST['input_value'])) : '';
 
     // Save checkbox field data with proper type casting
     $checkbox_value = isset ($_POST['checkbox_value']) ? true : false;
