@@ -36,7 +36,7 @@ function basic_metabox_render($post) {
     $input_data = get_post_meta($post->ID, 'input_value', true);
     $checkbox_data = get_post_meta($post->ID, 'checkbox_value', true);
 
-    // Add a nonce field for security
+    // nonce field for security
     wp_nonce_field('custom_metabox_nonce', 'custom_metabox_nonce');
 
     // Display input field
@@ -72,14 +72,11 @@ function display_metabox_data($content) {
     if (!isset ($post))
         return;
     $checkbox_data = get_post_meta($post->ID, 'checkbox_value', true);
-
-
     if ($checkbox_data) {
         $input_data = get_post_meta($post->ID, 'input_value', true);
         // Display input field data if checkbox is checked
         $content .= '<div class="custom-input-field"><p class="meta-data-value">' . esc_html($input_data) . '</p></div>';
     }
-
     return $content;
 }
 add_filter('the_content', 'display_metabox_data');
