@@ -9,14 +9,12 @@ License: GPL2
 
 // styles hooked
 function enqueue_metabox_styles() {
-    // Get the URL of the plugin directory
     $dir_url = plugins_url('style.css', __FILE__);
 
-    // Enqueue your custom stylesheet
     wp_enqueue_style('style', $dir_url);
 }
 // Ensure this line is present to call the function
-add_action('wp_enqueue_scripts', 'enqueue_metabox_styles');
+add_action('wp_enqueue_scripts', 'enqueue_metabox_sty   les');
 
 function metabox_basic_add() {
     add_meta_box(
@@ -38,7 +36,7 @@ function basic_metabox_render($post) {
 
     // nonce field for security
     wp_nonce_field('custom_metabox_nonce', 'custom_metabox_nonce');
-
+    
     // Display input field
     echo '<label for="input_value">Input Field:</label>';
     echo '<input type="text" id="input_value" name="input_value" value="' . esc_attr($input_data) . '" /><br>';
@@ -79,4 +77,3 @@ function display_metabox_data($content) {
     }
     return $content;
 }
-add_filter('the_content', 'display_metabox_data');
